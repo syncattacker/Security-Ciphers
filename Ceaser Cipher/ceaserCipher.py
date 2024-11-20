@@ -66,7 +66,11 @@ def decrypt(cipherText : str, decryptionKey : int) -> str:
 
 # Function to brute force the key based on plain text and cipher text.
 def bruteForce(plainText : str, cipherText : str) -> int:
-    pass
+    for key in range(26):
+        message = encrypt(plainText, key)
+        if message == cipherText:
+            return key
+    return None
 
 # Function to check whether the message is only alphabets.
 def validateMessage(message : str) -> bool:
@@ -90,12 +94,12 @@ def handleUserInput(inputType : str, keyType : str) -> list:
     list = []
     while True:
         try:
-            message = input(f"Enter Your {inputType} Text : ")
+            message = input(f"Enter Your {inputType} : ")
             if validateMessage(message):
                 list.append(message)
                 while True:
                     try:
-                        key = int(input(f"Enter The {keyType} Key : "))
+                        key = int(input(f"Enter The {keyType} : "))
                         if validateKey(key):
                             list.append(key)
                             break
@@ -112,6 +116,38 @@ def handleUserInput(inputType : str, keyType : str) -> list:
             print(f"Some unexpected error occured {error}")
         return list
 
+# Handle the user message input for bruteforce.
+def handleBruteForceInput(plainPrompt : str, cipherPrompt : str) -> list:
+    '''
+    Handles the user input for bruteforce of key with given plain text and cipher text.
+    '''
+    list = []
+    while True:
+        try:
+            plainText = input(f"Enter The {plainPrompt} : ")
+            if validateMessage(plainText):
+                list.append(plainText)
+                while True:
+                    try:
+                        cipherText = input(f"Enter The {cipherPrompt} : ")
+                        if validateMessage(cipherText):
+                            list.append(cipherText)
+                            return list
+                        else:
+                            print("[-] Invalid message, make sure it's all alphabets.")
+                            continue
+                    except Exception as error:
+                        print(f"Error Occured {error}")
+            else:
+                print("[-] Invalid message, make sure it's all alphabets.")
+                continue
+        except Exception as error:
+            print(f"Error Occured {error}")
+
+# Function for verbose output of brute force
+def isVerbose(verbose : bool) -> None:
+    pass
+
 # Execution entry point of code.
 def entryPoint() -> None:
     '''
@@ -126,11 +162,17 @@ def entryPoint() -> None:
             message, key = handleUserInput('Plain Text', 'Encryption Key')
             cipherText = encrypt(message, key)
             print(f"Your Cipher Text is : {cipherText}")
-        elif  user == 2:
+        elif user == 2:
             message, key = handleUserInput('Cipher Text', 'Decryption Key')
             plainText = decrypt(message, key)
             print(f"Your Plain Text is : {plainText}")
+        elif user == 3:
+            plain, cipher = handleBruteForceInput('Plain Text', 'Cipher Text')
+            key = bruteForce(plain, cipher)
+            if key:
+                print(f"Key Found : {key}")
+            else:
+                print("Key Not Found.")
         elif user == 4:
             exit()
-
 entryPoint()
