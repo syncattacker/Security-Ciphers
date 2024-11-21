@@ -1,4 +1,4 @@
-# **Caesar Cipher Program Documentation**
+# **Caesar Cipher Documentation**
 
 ## **Overview**
 
