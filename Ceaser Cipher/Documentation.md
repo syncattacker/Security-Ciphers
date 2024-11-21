@@ -39,8 +39,6 @@ To decrypt `KHOOR` with a shift of **3**:
 
 Decrypted text: `HELLO`
 
----
-
 ## Caesar Cipher Formula
 
 For a letter `x`:
@@ -53,21 +51,15 @@ Where:
 - `n` is the shift amount (key).
 - `% 26` ensures the calculation wraps around the alphabet.
 
----
-
 ## Strengths
 
 - Simple to implement.
 - Easy to understand.
 
----
-
 ## Weaknesses
 
 - **Low Security**: Since there are only 25 possible shifts, it is vulnerable to brute-force attacks.
 - **Letter Frequency Analysis**: The cipher does not alter the frequency of letters, making it susceptible to statistical attacks.
-
----
 
 ## Applications
 
