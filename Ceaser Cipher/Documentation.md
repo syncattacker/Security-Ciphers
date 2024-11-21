@@ -2,8 +2,6 @@
 
 The Caesar Cipher is one of the simplest and oldest encryption techniques. It is a type of substitution cipher where each letter in the plaintext is shifted by a fixed number of positions in the alphabet. The cipher is named after Julius Caesar, who reportedly used it to communicate with his generals.
 
----
-
 ## How It Works
 
 1. **Encryption**:  
@@ -17,8 +15,6 @@ The Caesar Cipher is one of the simplest and oldest encryption techniques. It is
 
 2. **Decryption**:  
    To decrypt, the reverse process is applied. The letters are shifted back by the same number of positions.
-
----
 
 ## Example
 
