@@ -65,11 +65,17 @@ def decrypt(cipherText : str, decryptionKey : int) -> str:
     return plainText
 
 # Function to brute force the key based on plain text and cipher text.
-def bruteForce(plainText : str, cipherText : str) -> int:
+def bruteForce(plainText : str, cipherText : str, verbose : bool = False) -> int:
     for key in range(26):
         message = encrypt(plainText, key)
         if message == cipherText:
-            return key
+            if verbose:
+                isVerbose(message, cipherText, key)
+                return key
+            else:
+                return key
+        else:
+            isVerbose(message, cipherText, key)
     return None
 
 # Function to check whether the message is only alphabets.
@@ -145,8 +151,13 @@ def handleBruteForceInput(plainPrompt : str, cipherPrompt : str) -> list:
             print(f"Error Occured {error}")
 
 # Function for verbose output of brute force
-def isVerbose(verbose : bool) -> None:
-    pass
+def isVerbose(plainText : str, cipherText : str, key : int) -> str:
+    '''
+    Handle the verbose for brute force.
+    '''
+    print(f"\nAttacking Plain Text {plainText} with Key {key} againt Cipher Text {cipherText}")
+
+    
 
 # Execution entry point of code.
 def entryPoint() -> None:
@@ -168,9 +179,11 @@ def entryPoint() -> None:
             print(f"Your Plain Text is : {plainText}")
         elif user == 3:
             plain, cipher = handleBruteForceInput('Plain Text', 'Cipher Text')
-            key = bruteForce(plain, cipher)
+            doVerbose = input("Do you want verbose for brute force [yes / no] : ").lower()
+            if doVerbose == 'yes':
+                key = bruteForce(plain, cipher, True)
             if key:
-                print(f"Key Found : {key}")
+                print(f"\nKey Found : {key}")
             else:
                 print("Key Not Found.")
         elif user == 4:
