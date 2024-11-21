@@ -15,6 +15,7 @@ The Caesar Cipher program is a Python-based tool that provides a simple encrypti
 
 - Python 3.x
 - `art` library (for the banner)
+
   ```bash
   pip install art
   ```
@@ -23,10 +24,10 @@ The Caesar Cipher program is a Python-based tool that provides a simple encrypti
 
 ### **Running the Program**
 
-1. Save the program file (`caesar_cipher.py`) in your working directory.
+1. Save the program file (`caesarCipher.py`) in your working directory.
 2. Run the program using:
    ```bash
-   python caesar_cipher.py
+   python caesarCipher.py
    ```
 
 ### **Menu Options**
