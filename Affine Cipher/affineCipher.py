@@ -1,1 +1,1 @@
-print("Affine Cipher")
+print("Affine")
