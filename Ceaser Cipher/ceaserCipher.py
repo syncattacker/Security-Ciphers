@@ -68,14 +68,15 @@ def decrypt(cipherText : str, decryptionKey : int) -> str:
 def bruteForce(plainText : str, cipherText : str, verbose : bool = False) -> int:
     for key in range(26):
         message = encrypt(plainText, key)
+        sleep(0.6)
         if message == cipherText:
             if verbose:
-                isVerbose(message, cipherText, key)
+                isVerbose(message, cipherText, key, 'Found')
                 return key
             else:
                 return key
         else:
-            isVerbose(message, cipherText, key)
+            isVerbose(message, cipherText, key, 'Not Found')
     return None
 
 # Function to check whether the message is only alphabets.
@@ -151,11 +152,11 @@ def handleBruteForceInput(plainPrompt : str, cipherPrompt : str) -> list:
             print(f"Error Occured {error}")
 
 # Function for verbose output of brute force
-def isVerbose(plainText : str, cipherText : str, key : int) -> str:
+def isVerbose(plainText : str, cipherText : str, key : int, status : str) -> str:
     '''
     Handle the verbose for brute force.
     '''
-    print(f"\nAttacking Plain Text {plainText} with Key {key} againt Cipher Text {cipherText}")
+    print(f"\nAttacking Plain Text {plainText} with Key {key} againt Cipher Text {cipherText} [{status}]")
 
     
 
@@ -180,12 +181,17 @@ def entryPoint() -> None:
         elif user == 3:
             plain, cipher = handleBruteForceInput('Plain Text', 'Cipher Text')
             doVerbose = input("Do you want verbose for brute force [yes / no] : ").lower()
-            if doVerbose == 'yes':
+            key = None
+            if doVerbose == "yes":
                 key = bruteForce(plain, cipher, True)
+            elif doVerbose == "no":
+                key = bruteForce(plain, cipher)
+            else:
+                print("[-] Invalid Choice.")
             if key:
                 print(f"\nKey Found : {key}")
             else:
-                print("Key Not Found.")
+                print("\nKey Not Found.")
         elif user == 4:
             exit()
 entryPoint()
