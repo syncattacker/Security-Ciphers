@@ -20,6 +20,10 @@ def clearTerminal() -> None:
     '''
     os.system('cls' if os.name == 'nt' else 'clear')
 
+
+def calculateGCD( encryptionKeyOne : int, domainBlock : int) -> int:
+    
+
 # Funtion to prompt user to choose from the menu of desired actions available.
 def userChoice() -> int:
     '''

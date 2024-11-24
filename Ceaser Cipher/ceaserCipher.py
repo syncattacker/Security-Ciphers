@@ -158,8 +158,6 @@ def isVerbose(plainText : str, cipherText : str, key : int, status : str) -> str
     '''
     print(f"\nAttacking Plain Text {plainText} with Key {key} againt Cipher Text {cipherText} [{status}]")
 
-    
-
 # Execution entry point of code.
 def entryPoint() -> None:
     '''
