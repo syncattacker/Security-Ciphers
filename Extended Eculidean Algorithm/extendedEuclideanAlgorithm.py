@@ -15,23 +15,19 @@ def calculateInverse(key : int, domain : int) -> int:
     '''
     Calculates the Modular Inverse of the Key with respect to the domain.
     '''
-    inverse = 0
-    if key != 0: 
+    copyDomain = domain
+    t1, t2 = 0, 1
+    while key > 0:
         quotient = domain // key
         remainder = domain % key
-        t1 = 0
-        t2 = 1
-        t3 = t1 - (quotient * t2)
-        while remainder > 0:
-            domain = key
-            key = remainder
-            quotient = domain // key
-            remainder = domain % key
-            t1 = t2
-            t2 = t3
-            t3 = t1 - (quotient * t2)
-            inverse = t2
-    return inverse
+        domain, key = key, remainder
+        t1, t2 = t2, t1 - quotient * t2
+
+    if domain != 1:
+        return -1
+
+    return t1 % copyDomain
 
 
 
+print(calculateInverse(5, 26))
